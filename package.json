@@ -5,5 +5,9 @@
   "main": "server.js",
   "repository": "https://github.com/wuzhe0912/socket.io-demo.git",
   "author": "Pitt Wu <pitt.wu@hlwtech.com.tw>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "socket.io": "^4.1.3"
+  }
 }
