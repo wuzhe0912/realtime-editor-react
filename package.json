@@ -1,0 +1,9 @@
+{
+  "name": "socket.io-demo",
+  "version": "1.0.0",
+  "description": "socket.io demo",
+  "main": "server.js",
+  "repository": "https://github.com/wuzhe0912/socket.io-demo.git",
+  "author": "Pitt Wu <pitt.wu@hlwtech.com.tw>",
+  "license": "MIT"
+}
