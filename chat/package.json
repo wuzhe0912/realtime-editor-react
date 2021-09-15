@@ -1,0 +1,13 @@
+{
+  "name": "chat",
+  "version": "1.0.0",
+  "main": "server.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": ""
+  },
+  "dependencies": {
+    "mongodb": "^4.1.2",
+    "socket.io": "^4.2.0"
+  }
+}
