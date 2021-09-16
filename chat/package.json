@@ -4,10 +4,13 @@
   "main": "server.js",
   "license": "MIT",
   "scripts": {
-    "dev": ""
+    "dev": "nodemon server.js"
   },
   "dependencies": {
-    "mongodb": "^4.1.2",
+    "express": "^4.17.1",
     "socket.io": "^4.2.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
   }
 }
