@@ -1,7 +1,7 @@
 const express = require('express');
 const http = require('http');
 
-const PORT = 5001;
+const PORT = 5000;
 
 const app = express();
 const server = http.createServer(app);
@@ -13,6 +13,11 @@ app.get('/', (req, res) => {
 });
 
 const io = require('socket.io')(server);
+
+io.on('connection', (socket) => {
+  // listen & receive client connection
+  console.log(`Server：${socket.id}`);
+});
 
 server.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
