@@ -1,0 +1,88 @@
+/* init css */
+html {
+  font-size: 100%;
+}
+
+* {
+  outline: none;
+  box-sizing: border-box;
+  margin: 0;
+}
+
+body {
+  min-height: 100vh;
+  color: #617d98;
+}
+
+a {
+  text-decoration: none;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+}
+
+input {
+  margin: 0;
+  padding: 0;
+  border-radius: 0;
+}
+
+.wrapper {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.enter-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 580px;
+  height: 300px;
+  background: linear-gradient(96.78deg, #7CB8F7 0%, #2A8BF2 100%);
+  border-radius: 6px;
+}
+
+.enter-input {
+  width: 200px;
+  height: 30px;
+  border-radius: 6px;
+}
+
+.enter-btn {
+  width: 120px;
+  height: 30px;
+  background: linear-gradient(92.68deg, #7CB8F7 0%, #2A8BF2 100%);
+  border-radius: 6px;
+  color: #fff;
+  margin-top: 12px;
+  cursor: pointer;
+}

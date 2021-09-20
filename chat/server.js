@@ -16,7 +16,12 @@ const io = require('socket.io')(server);
 
 io.on('connection', (socket) => {
   // listen & receive client connection
-  console.log(`Server：${socket.id}`);
+  // console.log(`Server：${socket.id}`);
+  socket.emit('hello-client', 'This is Server send message.');
+
+  socket.on('hello-server', (client) => {
+    console.log(`Server Receive：${client}`);
+  });
 });
 
 server.listen(PORT, () => {

@@ -4,12 +4,18 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/style.css" />
     <title>Websocket</title>
   </head>
   <body>
-    <h3>This is Client Side.</h3>
+    <main class="wrapper">
+      <div class="enter-box">
+        <input type="text" class="enter-input" placeholder="Create New Name" />
+        <button type="button" class="enter-btn">Enter Chat</button>
+      </div>
+    </main>
 
     <script src="/socket.io/socket.io.js"></script>
-    <script src="./js/client.js"></script>
+    <script type="module" src="./js/client.js"></script>
   </body>
 </html>
