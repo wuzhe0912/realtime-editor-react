@@ -6,7 +6,6 @@ const getUserName = () => {
 
 const setUserName = (value) => {
   username = value;
-  console.log(username);
 };
 
 export default {

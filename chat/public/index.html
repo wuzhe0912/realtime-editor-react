@@ -9,10 +9,14 @@
   </head>
   <body>
     <main class="wrapper">
-      <div class="enter-box">
+      <section class="enter-box">
         <input type="text" class="enter-input" placeholder="Create New Name" />
         <button type="button" class="enter-btn">Enter Chat</button>
-      </div>
+      </section>
+      <section class="chat-box display-none">
+        <span class="username-label"></span>
+        <div class="chat-list"></div>
+      </section>
     </main>
 
     <script src="/socket.io/socket.io.js"></script>
