@@ -12,11 +12,6 @@ const getChatList = (data) => {
       <p class="chat-title">${chatTitle}</p>
     </div>
     <div class="message-container" id="${messageContainerID}">
-      <div class="message-content">
-        <p class="message-paragraph">
-          <span class="message-author">Pitt：</span>Hello Websocket
-        </p>
-      </div>
     </div>
     <div class="message-input-wrapper">
       <input
@@ -31,6 +26,18 @@ const getChatList = (data) => {
   return chatContainer;
 };
 
+const getChatMessage = (data) => {
+  const { author, messageText } = data;
+  const messageContent = document.createElement('div');
+  messageContent.classList.add('message-content');
+  messageContent.innerHTML = `
+    <p class="message-paragraph">
+      <span class="message-author">${author}：</span>${messageText}
+    </p>
+  `;
+};
+
 export default {
   getChatList,
+  getChatMessage,
 };

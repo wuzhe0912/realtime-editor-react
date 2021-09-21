@@ -45,12 +45,12 @@ const createChatList = () => {
 
     if (key === 'Enter') {
       const author = store.getUserName();
-      const messageContent = event.target.value;
+      const messageText = event.target.value;
 
       messageInput.value = '';
       console.log({
         author,
-        messageContent,
+        messageText,
       });
     }
   });
