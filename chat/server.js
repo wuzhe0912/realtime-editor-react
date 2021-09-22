@@ -20,6 +20,7 @@ io.on('connection', (socket) => {
 
   socket.on('group-chat-message', (data) => {
     console.log(data);
+    socket.broadcast.emit('group-chat-message', data);
   });
 });
 

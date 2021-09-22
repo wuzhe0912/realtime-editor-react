@@ -6,6 +6,10 @@ const connectSocketIoServer = () => {
   socket.on('connect', () => {
     console.log(`Successfully Connect：${socket.id}`);
   });
+
+  socket.on('group-chat-message', (data) => {
+    console.log(data)
+  })
 };
 
 const sendGroupChatMessage = (author, messageText) => {
