@@ -16,11 +16,10 @@ const io = require('socket.io')(server);
 
 io.on('connection', (socket) => {
   // listen & receive client connection
-  // console.log(`Server：${socket.id}`);
-  socket.emit('hello-client', 'This is Server send message.');
+  console.log(`Server：${socket.id}`);
 
-  socket.on('hello-server', (client) => {
-    console.log(`Server Receive：${client}`);
+  socket.on('group-chat-message', (data) => {
+    console.log(data);
   });
 });
 

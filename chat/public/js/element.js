@@ -26,7 +26,7 @@ const getChatList = (data) => {
   return chatContainer;
 };
 
-const getChatMessage = (data) => {
+const getChatMessageContent = (data) => {
   const { author, messageText } = data;
   const messageContent = document.createElement('div');
   messageContent.classList.add('message-content');
@@ -39,5 +39,5 @@ const getChatMessage = (data) => {
 
 export default {
   getChatList,
-  getChatMessage,
+  getChatMessageContent,
 };

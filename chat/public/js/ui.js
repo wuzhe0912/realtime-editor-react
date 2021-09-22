@@ -1,5 +1,6 @@
 import store from './store.js';
 import element from './element.js';
+import socketHandler from './socket/handler.js';
 
 const goToChat = () => {
   const enterPage = document.querySelector('.enter-box');
@@ -46,12 +47,10 @@ const createChatList = () => {
     if (key === 'Enter') {
       const author = store.getUserName();
       const messageText = event.target.value;
-
+      // send message to socket.io server
+      socketHandler.sendGroupChatMessage(author, messageText);
+      // reset
       messageInput.value = '';
-      console.log({
-        author,
-        messageText,
-      });
     }
   });
 };
