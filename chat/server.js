@@ -14,12 +14,33 @@ app.get('/', (req, res) => {
 
 const io = require('socket.io')(server);
 
+let connectPeers = [];
+
 io.on('connection', (socket) => {
   console.log(`Server：${socket.id}`);
 
   socket.on('group-chat-message', (data) => {
     console.log(data);
     io.emit('group-chat-message', data);
+  });
+
+  socket.on('register-new-user', (userData) => {
+    const { username } = userData;
+
+    const newPeer = {
+      username,
+      socketId: socket.id,
+    };
+
+    connectPeers = [...connectPeers, newPeer];
+    console.log('Connected：', connectPeers);
+  });
+
+  socket.on('disconnect', () => {
+    connectPeers = connectPeers.filter((peer) => {
+      return peer.socketId !== socket.id;
+    });
+    console.log('Disconnect：', connectPeers);
   });
 });
 
