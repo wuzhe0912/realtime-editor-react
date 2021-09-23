@@ -35,6 +35,8 @@ const getChatMessageContent = (data) => {
       <span class="message-author">${author}：</span>${messageText}
     </p>
   `;
+
+  return messageContent;
 };
 
 export default {

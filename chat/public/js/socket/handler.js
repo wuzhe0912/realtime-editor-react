@@ -1,3 +1,5 @@
+import ui from '../ui.js';
+
 let socket = null;
 
 const connectSocketIoServer = () => {
@@ -8,8 +10,9 @@ const connectSocketIoServer = () => {
   });
 
   socket.on('group-chat-message', (data) => {
-    console.log(data)
-  })
+    console.log(data);
+    ui.appendChatMessage(data);
+  });
 };
 
 const sendGroupChatMessage = (author, messageText) => {

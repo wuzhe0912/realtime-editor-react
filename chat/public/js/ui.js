@@ -24,7 +24,7 @@ const updateUserName = (username) => {
 
 const messageContainerID = 'message-container-id';
 const messageInputID = 'message-input-id';
-const chatContainerID = 'chatContainerID';
+const chatContainerID = 'chat-container-id';
 
 const createChatList = () => {
   // default value
@@ -55,6 +55,13 @@ const createChatList = () => {
   });
 };
 
+const appendChatMessage = (data) => {
+  const groupChatMessage = document.getElementById(messageContainerID);
+  const chatMessageContent = element.getChatMessageContent(data);
+  groupChatMessage.appendChild(chatMessageContent);
+};
+
 export default {
   goToChat,
+  appendChatMessage,
 };

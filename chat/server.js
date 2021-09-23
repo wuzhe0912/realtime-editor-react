@@ -15,12 +15,11 @@ app.get('/', (req, res) => {
 const io = require('socket.io')(server);
 
 io.on('connection', (socket) => {
-  // listen & receive client connection
   console.log(`Server：${socket.id}`);
 
   socket.on('group-chat-message', (data) => {
     console.log(data);
-    socket.broadcast.emit('group-chat-message', data);
+    io.emit('group-chat-message', data);
   });
 });
 
