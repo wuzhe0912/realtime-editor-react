@@ -61,7 +61,47 @@ const appendChatMessage = (data) => {
   groupChatMessage.appendChild(chatMessageContent);
 };
 
+const updateActiveChatGroup = (data) => {
+  const { connectPeers } = data;
+  const userSocketId = store.getSocketId();
+  const activeChatGroups = store.getActiveChatGroup();
+
+  connectPeers.forEach((peer) => {
+    const isRepeat = activeChatGroups.find((node) => {
+      return peer.socketId === node.socketId;
+    });
+
+    if (!isRepeat && peer.socketId !== userSocketId) {
+      createNewUserChatGroup(peer);
+    }
+  });
+};
+
+const createNewUserChatGroup = (peer) => {
+  const chatTitle = peer.username;
+  const messageContainerID = `${peer.socketId}-message`;
+  const messageInputID = `${peer.socketId}-input`;
+  const chatContainerID = peer.socketId;
+
+  const data = {
+    chatTitle,
+    messageContainerID,
+    messageInputID,
+    chatContainerID,
+  };
+
+  const chatGroup = element.getChatList(data);
+  const chatList = document.querySelector('.chat-list');
+  chatList.appendChild(chatGroup);
+
+  // push new user to chat group
+  const activeChatGroup = store.getActiveChatGroup();
+  const newActiveChatGroup = [...activeChatGroup, peer];
+  store.setActiveChatGroup(newActiveChatGroup);
+};
+
 export default {
   goToChat,
   appendChatMessage,
+  updateActiveChatGroup,
 };
