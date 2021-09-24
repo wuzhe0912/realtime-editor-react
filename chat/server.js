@@ -20,7 +20,6 @@ io.on('connection', (socket) => {
   console.log(`Server：${socket.id}`);
 
   socket.on('group-chat-message', (data) => {
-    console.log(data);
     io.emit('group-chat-message', data);
   });
 
@@ -32,17 +31,26 @@ io.on('connection', (socket) => {
       socketId: socket.id,
     };
 
+    // use spread copy
     connectPeers = [...connectPeers, newPeer];
-    console.log('Connected：', connectPeers);
+    boardcastConnectedPeers();
   });
 
   socket.on('disconnect', () => {
     connectPeers = connectPeers.filter((peer) => {
       return peer.socketId !== socket.id;
     });
-    console.log('Disconnect：', connectPeers);
+    boardcastConnectedPeers();
   });
 });
+
+const boardcastConnectedPeers = () => {
+  const data = {
+    connectPeers,
+  };
+
+  io.emit('active-peers', data);
+};
 
 server.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
