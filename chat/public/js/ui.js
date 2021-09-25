@@ -94,6 +94,29 @@ const createNewUserChatGroup = (peer) => {
   const chatList = document.querySelector('.chat-list');
   chatList.appendChild(chatGroup);
 
+  // register event & send message to other user
+  const newMessageInput = document.getElementById(messageInputID);
+  newMessageInput.addEventListener('keydown', (e) => {
+    const key = e.key;
+
+    if (key === 'Enter') {
+      const author = store.getUserName();
+      const messageContent = e.target.value;
+      const receiverSocketId = peer.socketId;
+      const authorSocketId = store.getSocketId();
+
+      const data = {
+        author,
+        messageContent,
+        receiverSocketId,
+        authorSocketId,
+      };
+
+      socketHandler.sendDirectMessage(data);
+      newMessageInput.value = '';
+    }
+  });
+
   // push new user to chat group
   const activeChatGroup = store.getActiveChatGroup();
   const newActiveChatGroup = [...activeChatGroup, peer];

@@ -36,6 +36,10 @@ io.on('connection', (socket) => {
     boardcastConnectedPeers();
   });
 
+  socket.on('direct-message', (data) => {
+    console.log('direct-message', data);
+  });
+
   socket.on('disconnect', () => {
     connectPeers = connectPeers.filter((peer) => {
       return peer.socketId !== socket.id;

@@ -28,14 +28,6 @@ const registerActiveSession = () => {
   socket.emit('register-new-user', userData);
 };
 
-const registerActiveSession = () => {
-  const userData = {
-    username: store.getUserName(),
-  };
-
-  socket.emit('register-new-user', userData);
-};
-
 const sendGroupChatMessage = (author, messageText) => {
   const messageData = {
     author,
@@ -45,7 +37,12 @@ const sendGroupChatMessage = (author, messageText) => {
   socket.emit('group-chat-message', messageData);
 };
 
+const sendDirectMessage = (data) => {
+  socket.emit('direct-message', data);
+};
+
 export default {
   connectSocketIoServer,
   sendGroupChatMessage,
+  sendDirectMessage,
 };
