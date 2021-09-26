@@ -171,6 +171,32 @@ input {
   font-weight: bold;
 }
 
+.username-text {
+  position: absolute;
+  top: 20px;
+  left: 40px;
+  font-size: 36px;
+}
+
+.message-left {
+  display: inline-block;
+  background: white;
+  border-radius: 8px 8px 8px 0px;
+  border: 1px solid #d5deeb;
+  color: black;
+  margin: 5px;
+  padding: 8px;
+}
+
+.message-right {
+  float: right;
+  background: linear-gradient(168.68deg, #0052c9 1.12%, #0a91db 100%);
+  border-radius: 8px 8px 0px 8px;
+  color: white;
+  margin: 5px;
+  padding: 8px;
+}
+
 .display-none {
   display: none;
 }

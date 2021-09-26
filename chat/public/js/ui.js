@@ -29,7 +29,7 @@ const chatContainerID = 'chat-container-id';
 const createChatList = () => {
   // default value
   const data = {
-    chatTitle: 'Group Name',
+    chatTitle: 'Public Chat',
     messageContainerID,
     messageInputID,
     chatContainerID,
@@ -123,8 +123,27 @@ const createNewUserChatGroup = (peer) => {
   store.setActiveChatGroup(newActiveChatGroup);
 };
 
+const appendDirectChatMessage = (messageData) => {
+  const { authorSocketId, author, messageContent, receiverSocketId, isAuthor } =
+    messageData;
+  const messageWrapper = isAuthor
+    ? document.getElementById(`${receiverSocketId}-message`)
+    : document.getElementById(`${authorSocketId}-message`);
+
+  if (messageWrapper) {
+    const data = {
+      author,
+      textContent: messageContent,
+      alighRight: isAuthor ? true : false,
+    };
+    const message = element.getDirectChatMessage(data);
+    messageWrapper.appendChild(message);
+  }
+};
+
 export default {
   goToChat,
   appendChatMessage,
   updateActiveChatGroup,
+  appendDirectChatMessage,
 };

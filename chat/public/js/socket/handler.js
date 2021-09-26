@@ -19,6 +19,10 @@ const connectSocketIoServer = () => {
   socket.on('active-peers', (data) => {
     ui.updateActiveChatGroup(data);
   });
+
+  socket.on('direct-message', (data) => {
+    ui.appendDirectChatMessage(data);
+  });
 };
 
 const registerActiveSession = () => {

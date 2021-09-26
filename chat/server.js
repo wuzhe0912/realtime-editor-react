@@ -37,7 +37,19 @@ io.on('connection', (socket) => {
   });
 
   socket.on('direct-message', (data) => {
-    console.log('direct-message', data);
+    const { receiverSocketId } = data;
+    const hasConnectPeer = connectPeers.find(
+      (peer) => peer.socketId === receiverSocketId
+    );
+
+    if (hasConnectPeer) {
+      const authorData = {
+        ...data,
+        isAuthor: true,
+      };
+      socket.emit('direct-message', authorData);
+      io.to(receiverSocketId).emit('direct-message', data);
+    }
   });
 
   socket.on('disconnect', () => {

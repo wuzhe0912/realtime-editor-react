@@ -35,11 +35,21 @@ const getChatMessageContent = (data) => {
       <span class="message-author">${author}：</span>${messageText}
     </p>
   `;
+  return messageContent;
+};
 
+const getDirectChatMessage = (data) => {
+  const { textContent, alighRight } = data;
+  const messageContent = document.createElement('div');
+  const messageClass = alighRight ? 'message-right' : 'message-left';
+  messageContent.innerHTML = `
+    <p class="${messageClass}">${textContent}
+  `;
   return messageContent;
 };
 
 export default {
   getChatList,
   getChatMessageContent,
+  getDirectChatMessage,
 };
