@@ -23,6 +23,10 @@ const connectSocketIoServer = () => {
   socket.on('direct-message', (data) => {
     ui.appendDirectChatMessage(data);
   });
+
+  socket.on('peer-disconnected', (data) => {
+    ui.removeChatOfDisconnected(data);
+  });
 };
 
 const registerActiveSession = () => {

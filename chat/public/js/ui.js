@@ -141,9 +141,25 @@ const appendDirectChatMessage = (messageData) => {
   }
 };
 
+const removeChatOfDisconnected = (data) => {
+  const { socketIdOfDisconnectPeer } = data;
+  const activeChatGroup = store.getActiveChatGroup(socketIdOfDisconnectPeer);
+  const newActiveChatGroup = activeChatGroup.filter(
+    (node) => node.socketId !== socketIdOfDisconnectPeer
+  );
+  store.setActiveChatGroup(newActiveChatGroup);
+
+  const chatBox = document.getElementById(socketIdOfDisconnectPeer);
+
+  if (chatBox) {
+    chatBox.parentElement.removeChild(chatBox);
+  }
+};
+
 export default {
   goToChat,
   appendChatMessage,
   updateActiveChatGroup,
   appendDirectChatMessage,
+  removeChatOfDisconnected,
 };

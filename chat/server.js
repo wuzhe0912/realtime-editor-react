@@ -52,11 +52,17 @@ io.on('connection', (socket) => {
     }
   });
 
+  // listen leave chat user
   socket.on('disconnect', () => {
     connectPeers = connectPeers.filter((peer) => {
       return peer.socketId !== socket.id;
     });
     boardcastConnectedPeers();
+
+    const data = {
+      socketIdOfDisconnectPeer: socket.id,
+    };
+    io.emit('peer-disconnected', data);
   });
 });
 
