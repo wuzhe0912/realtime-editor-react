@@ -17,6 +17,12 @@ nameInput.addEventListener('keydown', (e) => {
   }
 });
 
+const roomSelect = document.getElementById('rooms-select');
+
+roomSelect.addEventListener('change', (e) => {
+  store.setRoomId(e.target.value);
+});
+
 chatBtn.addEventListener('click', () => {
   validationInput(store.getUserName());
 });

@@ -67,7 +67,7 @@ input {
   justify-content: center;
   width: 580px;
   height: 300px;
-  background: linear-gradient(96.78deg, #7CB8F7 0%, #2A8BF2 100%);
+  background: linear-gradient(96.78deg, #7cb8f7 0%, #2a8bf2 100%);
   border-radius: 6px;
 }
 
@@ -75,15 +75,15 @@ input {
   width: 200px;
   height: 30px;
   border-radius: 6px;
+  margin-bottom: 12px;
 }
 
 .enter-btn {
   width: 120px;
   height: 30px;
-  background: linear-gradient(92.68deg, #7CB8F7 0%, #2A8BF2 100%);
+  background: linear-gradient(92.68deg, #7cb8f7 0%, #2a8bf2 100%);
   border-radius: 6px;
   color: #fff;
-  margin-top: 12px;
   cursor: pointer;
 }
 

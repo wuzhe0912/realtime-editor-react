@@ -15,6 +15,7 @@ const goToChat = () => {
   updateUserName(username);
 
   createChatList();
+  createRoomChat();
 };
 
 const updateUserName = (username) => {
@@ -154,6 +155,26 @@ const removeChatOfDisconnected = (data) => {
   if (chatBox) {
     chatBox.parentElement.removeChild(chatBox);
   }
+};
+
+const createRoomChat = () => {
+  const roomId = store.getRoomId();
+
+  const chatTitle = roomId;
+  const messageContainerID = `${roomId}-message`;
+  const messageInputID = `${roomId}-input`;
+  const chatContainerID = roomId;
+
+  const data = {
+    chatTitle,
+    messageContainerID,
+    messageInputID,
+    chatContainerID,
+  };
+
+  const room = element.getChatList(data);
+  const roomWrapper = document.querySelector('.chat-list');
+  roomWrapper.appendChild(room);
 };
 
 export default {

@@ -32,6 +32,7 @@ const connectSocketIoServer = () => {
 const registerActiveSession = () => {
   const userData = {
     username: store.getUserName(),
+    roomId: store.getRoomId(),
   };
   socket.emit('register-new-user', userData);
 };

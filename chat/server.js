@@ -24,12 +24,15 @@ io.on('connection', (socket) => {
   });
 
   socket.on('register-new-user', (userData) => {
-    const { username } = userData;
+    const { username, roomId } = userData;
 
     const newPeer = {
       username,
       socketId: socket.id,
+      roomId,
     };
+
+    socket.join(roomId);
 
     // use spread copy
     connectPeers = [...connectPeers, newPeer];

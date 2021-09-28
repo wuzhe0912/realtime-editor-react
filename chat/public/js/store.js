@@ -1,22 +1,16 @@
 let username = null;
 let socketId = null;
 let activeChatGroup = [];
+let roomId = 'Cars';
 
-const getUserName = () => {
-  return username;
-};
-
-const setUserName = (value) => {
-  username = value;
-};
-
+const getUserName = () => username;
+const setUserName = (name) => (username = name);
 const getSocketId = () => socketId;
-
 const setSocketId = (id) => (socketId = id);
-
 const getActiveChatGroup = () => activeChatGroup;
-
 const setActiveChatGroup = (chatGroup) => (activeChatGroup = chatGroup);
+const getRoomId = () => roomId;
+const setRoomId = (id) => (roomId = id);
 
 export default {
   getUserName,
@@ -25,4 +19,6 @@ export default {
   setSocketId,
   getActiveChatGroup,
   setActiveChatGroup,
+  getRoomId,
+  setRoomId,
 };
