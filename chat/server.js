@@ -55,6 +55,12 @@ io.on('connection', (socket) => {
     }
   });
 
+  socket.on('room-message', (data) => {
+    const { roomId } = data;
+
+    io.to(roomId).emit('room-message', data);
+  });
+
   // listen leave chat user
   socket.on('disconnect', () => {
     connectPeers = connectPeers.filter((peer) => {

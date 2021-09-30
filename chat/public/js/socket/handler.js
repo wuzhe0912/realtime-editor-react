@@ -27,6 +27,10 @@ const connectSocketIoServer = () => {
   socket.on('peer-disconnected', (data) => {
     ui.removeChatOfDisconnected(data);
   });
+
+  socket.on('room-message', (data) => {
+    ui.appendRoomChatMessage(data);
+  });
 };
 
 const registerActiveSession = () => {
@@ -50,8 +54,13 @@ const sendDirectMessage = (data) => {
   socket.emit('direct-message', data);
 };
 
+const sendRoomMessage = (data) => {
+  socket.emit('room-message', data);
+};
+
 export default {
   connectSocketIoServer,
   sendGroupChatMessage,
   sendDirectMessage,
+  sendRoomMessage,
 };

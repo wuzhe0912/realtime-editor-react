@@ -175,6 +175,42 @@ const createRoomChat = () => {
   const room = element.getChatList(data);
   const roomWrapper = document.querySelector('.chat-list');
   roomWrapper.appendChild(room);
+
+  // send event in room
+  const newMessageInput = document.getElementById(messageInputID);
+  newMessageInput.addEventListener('keydown', (e) => {
+    const key = e.key;
+
+    if (key === 'Enter') {
+      const author = store.getUserName();
+      const messageContent = e.target.value;
+      const authorSocketId = store.getSocketId();
+
+      const data = {
+        author,
+        messageContent,
+        authorSocketId,
+        roomId,
+      };
+
+      socketHandler.sendRoomMessage(data);
+      newMessageInput.value = '';
+    }
+  });
+};
+
+const appendRoomChatMessage = (data) => {
+  const { roomId, author, messageContent } = data;
+  const roomChatMessageId = `${roomId}-message`;
+  const roomMessageWrapper = document.getElementById(roomChatMessageId);
+
+  const roomData = {
+    author,
+    messageText: messageContent,
+  };
+
+  const roomMessage = element.getChatMessageContent(roomData);
+  roomMessageWrapper.appendChild(roomMessage);
 };
 
 export default {
@@ -183,4 +219,5 @@ export default {
   updateActiveChatGroup,
   appendDirectChatMessage,
   removeChatOfDisconnected,
+  appendRoomChatMessage,
 };
