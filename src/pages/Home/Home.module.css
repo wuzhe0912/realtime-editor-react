@@ -1,0 +1,58 @@
+.homeWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  height: 100vh;
+}
+
+.formWrapper {
+  background: #282a36;
+  padding: 20px;
+  border-radius: 10px;
+  width: 400px;
+  max-width: 90%;
+}
+
+.homeLogo {
+  height: 80px;
+  margin-bottom: 30px;
+}
+
+.inviteRoomId {
+  margin-bottom: 20px;
+  margin-top: 0;
+}
+
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.inputBox {
+  padding: 10px;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  margin-bottom: 14px;
+  background: #eee;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.createInfo {
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
+.createNewRoom {
+  color: #4aed88;
+  text-decoration: none;
+  border-bottom: 1px solid #4aed88;
+  transition: all 0
+}
+  
+.createNewRoom:hover {
+  color: #368654;
+  border-color: #368654;
+}
