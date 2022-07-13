@@ -10,13 +10,19 @@
   background: #282a36;
   padding: 20px;
   border-radius: 10px;
-  width: 400px;
+  width: 500px;
   max-width: 90%;
 }
 
+.formTitle {
+  display: flex;
+  justify-content: space-between;
+  color: #4aed88;
+}
+
 .homeLogo {
-  height: 80px;
-  margin-bottom: 30px;
+  width: 100px;
+  height: 100px;
 }
 
 .inviteRoomId {
@@ -34,25 +40,27 @@
   border-radius: 5px;
   outline: none;
   border: none;
-  margin-bottom: 14px;
+  margin-bottom: 16px;
   background: #eee;
   font-size: 16px;
   font-weight: bold;
 }
 
 .createInfo {
-  margin: 0 auto;
-  margin-top: 20px;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 16px;
 }
 
 .createNewRoom {
   color: #4aed88;
   text-decoration: none;
   border-bottom: 1px solid #4aed88;
-  transition: all 0
+  transition: all 0;
 }
   
 .createNewRoom:hover {
   color: #368654;
   border-color: #368654;
+  cursor: pointer;
 }
