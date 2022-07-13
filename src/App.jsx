@@ -6,7 +6,7 @@ import './App.css';
 
 function App() {
   return (
-    <main className='App'>
+    <>
       <Toaster
         position='top-center'
         toastOptions={{
@@ -23,7 +23,7 @@ function App() {
           <Route path='/editor/:roomId' element={<Editor />}></Route>
         </Routes>
       </BrowserRouter>
-    </main>
+    </>
   );
 }
 

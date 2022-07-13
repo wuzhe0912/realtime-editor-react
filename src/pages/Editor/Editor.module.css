@@ -1,14 +1,15 @@
 .editorWrapper {
   display: grid;
   grid-template-columns: 240px 1fr;
+  height: 100vh;
 }
 
 .asideContainer {
+  display: flex;
+  flex-direction: column;
   background: #1c1e29;
   padding: 16px;
   color: #fff;
-  display: flex;
-  flex-direction: column;
 }
 
 .asideInner {

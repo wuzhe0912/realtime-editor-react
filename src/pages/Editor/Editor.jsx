@@ -2,6 +2,7 @@ import { useState } from 'react';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import Client from 'components/Client/Client';
+import EditorComponent from 'components/EditorComponent/EditorComponent';
 // styles
 import styles from './Editor.module.css';
 import CodeSyncLogo from 'assets/code-sync.png';
@@ -10,6 +11,7 @@ function Editor() {
   const [clients, setClients] = useState([
     { socketId: 1, username: 'Minecraft' },
     { socketId: 2, username: 'Paint' },
+    { socketId: 3, username: 'Carol' },
   ]);
   const reactNavigator = useNavigate();
 
@@ -37,12 +39,16 @@ function Editor() {
             </div>
           }
         </div>
-        <button className='btn btn-copy'>Copy Room ID</button>
-        <button className='btn btn-leave' onClick={leaveRoom}>
-          Leave
-        </button>
+        <div className='btn-group'>
+          <button className='btn btn-copy'>Copy Room ID</button>
+          <button className='btn btn-leave' onClick={leaveRoom}>
+            Leave
+          </button>
+        </div>
       </aside>
-      <section className='editor-content'></section>
+      <section className='editor-content'>
+        <EditorComponent />
+      </section>
     </div>
   );
 }
