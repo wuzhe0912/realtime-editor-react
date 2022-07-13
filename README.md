@@ -1,3 +1,12 @@
-# Code Sync Editor App
+# CodeSync Editor App
 
-## Test Room ID
+## Live Preview
+
+## Technical Details
+
+- React
+  - React Hooks
+  - React Router
+- Express
+- Socket.io
+- Deploy : Heroku

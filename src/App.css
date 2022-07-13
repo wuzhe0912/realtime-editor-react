@@ -1,4 +1,9 @@
 /* share component */
+.logo-image {
+  width: 120px;
+  height: 110px;
+}
+
 .btn {
   border: none;
   padding: 10px;
@@ -22,9 +27,8 @@
 }
 
 /* footer */
-footer {
-  position: fixed;
-  bottom: 0;
+.footer-container {
+  text-align: center;
 }
 
 footer a {

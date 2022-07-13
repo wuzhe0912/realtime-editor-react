@@ -1,6 +1,6 @@
 function HomeFooter() {
   return (
-    <footer>
+    <footer className='footer-container'>
       <h4>
         Built with React by&nbsp;
         <a

@@ -2,6 +2,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  display: grid;
+  grid-template-rows: 1fr auto;
   color: #fff;
   height: 100vh;
 }
@@ -11,18 +13,12 @@
   padding: 20px;
   border-radius: 10px;
   width: 500px;
-  max-width: 90%;
 }
 
 .formTitle {
   display: flex;
   justify-content: space-between;
   color: #4aed88;
-}
-
-.homeLogo {
-  width: 100px;
-  height: 100px;
 }
 
 .inviteRoomId {
