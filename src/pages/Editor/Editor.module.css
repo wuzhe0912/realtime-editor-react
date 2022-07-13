@@ -2,3 +2,27 @@
   display: grid;
   grid-template-columns: 240px 1fr;
 }
+
+.asideContainer {
+  background: #1c1e29;
+  padding: 16px;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+}
+
+.asideInner {
+  flex: 1;
+}
+
+.asideTitle {
+  border-bottom: 1px solid #424242;
+  padding-bottom: 10px;
+}
+
+.clientsList {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}

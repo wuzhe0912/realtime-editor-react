@@ -1,7 +1,13 @@
-import React from 'react';
+import Avatar from 'react-avatar';
+import styles from './Client.module.css';
 
-const Client = () => {
-  return <li className='client-list'></li>;
+const Client = ({ username }) => {
+  return (
+    <div className={styles.clientItem}>
+      <Avatar name={username} size={50} round='14px'></Avatar>
+      <span>{username}</span>
+    </div>
+  );
 };
 
 export default Client;
