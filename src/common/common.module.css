@@ -1,5 +1,4 @@
-/* share component */
-.logo-image {
+.logoImage {
   width: 120px;
   height: 110px;
 }
@@ -14,28 +13,28 @@
   transition: all 0.3s ease-in-out;
 }
 
-.btn-join,
-.btn-leave {
+.btnJoin,
+.btnLeave {
   background: #4aed88;
   width: 100px;
   margin-left: auto;
 }
 
-.btn-join:hover,
-.btn-leave:hover {
+.btnJoin:hover,
+.btnLeave:hover {
   background: #2b824c;
 }
 
 /* footer */
-.footer-container {
+.footerContainer {
   text-align: center;
 }
 
-footer a {
+.footerContainer a {
   color: #4aee88;
 }
 
-footer a:hover {
+.footerContainer a:hover {
   color: #368654;
   border-color: #368654;
 }

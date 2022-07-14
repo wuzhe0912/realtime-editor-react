@@ -1,6 +1,8 @@
+import commonStyles from 'common/common.module.css';
+
 function HomeFooter() {
   return (
-    <footer className='footer-container'>
+    <footer className={commonStyles.footerContainer}>
       <h4>
         Built with React by&nbsp;
         <a

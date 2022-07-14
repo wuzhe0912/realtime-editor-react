@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 // styles
+import commonStyles from 'common/common.module.css';
 import styles from './Home.module.css';
 import CodeSyncLogo from 'assets/code-sync.png';
 
@@ -48,26 +49,33 @@ function Home() {
       <section className={styles.formWrapper}>
         <div className={styles.formTitle}>
           <h1>CodeSync Editor</h1>
-          <img src={CodeSyncLogo} className='logo-image' alt='code-sync-logo' />
+          <img
+            src={CodeSyncLogo}
+            className={commonStyles.logoImage}
+            alt='code-sync-logo'
+          />
         </div>
-        <h4 className={styles.inviteRoomId}>Paste invitation ROOM ID</h4>
+        <h4 className={styles.inviteRoomId}>Paste invitation Room ID</h4>
         <div className={styles.inputContainer}>
           <input
             type='text'
             className={styles.inputBox}
-            placeholder='ROOM ID'
+            placeholder='Room ID'
             value={roomId}
             onChange={(e) => setRoomId(e.target.value)}
           />
           <input
             type='text'
             className={styles.inputBox}
-            placeholder='USERNAME'
+            placeholder='User Name'
             value={userName}
             onChange={(e) => setUserName(e.target.value)}
             onKeyUp={handleInputEnter}
           />
-          <button className='btn btn-join' onClick={joinRoom}>
+          <button
+            className={`${commonStyles.btn} ${commonStyles.btnJoin}`}
+            onClick={joinRoom}
+          >
             Join
           </button>
           <div className={styles.createInfo}>

@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import Client from 'components/Client/Client';
 import EditorComponent from 'components/EditorComponent/EditorComponent';
 // styles
+import commonStyles from 'common/common.module.css';
 import styles from './Editor.module.css';
 import CodeSyncLogo from 'assets/code-sync.png';
 
@@ -26,7 +27,7 @@ function Editor() {
           <div className={styles.asideTitle}>
             <img
               src={CodeSyncLogo}
-              className='logo-image'
+              className={commonStyles.logoImage}
               alt='edit-page-logo'
             />
           </div>
@@ -40,8 +41,13 @@ function Editor() {
           }
         </div>
         <div className='btn-group'>
-          <button className='btn btn-copy'>Copy Room ID</button>
-          <button className='btn btn-leave' onClick={leaveRoom}>
+          <button className={`${commonStyles.btn} ${commonStyles.btnCopy}`}>
+            Copy Room ID
+          </button>
+          <button
+            className={`${commonStyles.btn} ${commonStyles.btnLeave}`}
+            onClick={leaveRoom}
+          >
             Leave
           </button>
         </div>
