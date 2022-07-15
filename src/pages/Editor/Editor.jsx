@@ -2,7 +2,7 @@ import { useState } from 'react';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import Client from 'components/Client/Client';
-import EditorComponent from 'components/EditorComponent/EditorComponent';
+import EditorContent from 'components/EditorContent/EditorContent';
 // styles
 import commonStyles from 'common/common.module.css';
 import styles from './Editor.module.css';
@@ -53,7 +53,7 @@ function Editor() {
         </div>
       </aside>
       <section className='editor-content'>
-        <EditorComponent />
+        <EditorContent />
       </section>
     </div>
   );

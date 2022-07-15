@@ -25,13 +25,18 @@
   background: #2b824c;
 }
 
-.btnCopy {
-  margin-bottom: 10px;
-}
-
 .btnCopy,
 .btnLeave {
   width: 100%;
+}
+
+.btnCopy {
+  margin-bottom: 10px;
+  background: #eee;
+}
+
+.btnCopy:hover {
+  background: #cecece;
 }
 
 /* footer */
