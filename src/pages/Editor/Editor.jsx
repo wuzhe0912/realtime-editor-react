@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import toast from 'react-hot-toast';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Client from 'components/Client/Client';
 import EditorContent from 'components/EditorContent/EditorContent';
 // styles
@@ -9,14 +9,23 @@ import styles from './Editor.module.css';
 import CodeSyncLogo from 'assets/code-sync.png';
 
 function Editor() {
-  const [clients, setClients] = useState([
-    { socketId: 1, username: 'Minecraft' },
-    { socketId: 2, username: 'Paint' },
-    { socketId: 3, username: 'Carol' },
-    { socketId: 4, username: 'Steam' },
-    { socketId: 5, username: 'Empire Age II' },
-  ]);
+  const [clients, setClients] = useState([]);
   const reactNavigator = useNavigate();
+  const { roomId } = useParams();
+
+  useEffect(() => {
+    console.log(1, roomId);
+  }, []);
+
+  const copyRoomId = async () => {
+    try {
+      navigator.clipboard.writeText(roomId);
+      toast.success('Room ID copied to clipboard');
+    } catch (error) {
+      toast.error('Could not copy the Room ID');
+      console.log(error);
+    }
+  };
 
   function leaveRoom() {
     reactNavigator('/');
@@ -41,7 +50,10 @@ function Editor() {
           </div>
         }
         <div className={styles.btnGroup}>
-          <button className={`${commonStyles.btn} ${commonStyles.btnCopy}`}>
+          <button
+            className={`${commonStyles.btn} ${commonStyles.btnCopy}`}
+            onClick={copyRoomId}
+          >
             Copy Room ID
           </button>
           <button
@@ -53,7 +65,7 @@ function Editor() {
         </div>
       </aside>
       <section className='editor-content'>
-        <EditorContent />
+        <EditorContent roomId={roomId} />
       </section>
     </div>
   );
