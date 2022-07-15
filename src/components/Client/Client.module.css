@@ -1,7 +1,10 @@
 .clientItem {
   display: flex;
   align-items: center;
-  flex-direction: column;
   font-weight: bold;
   margin-bottom: 10px;
+}
+
+.clientItemText {
+  margin-left: 10px;
 }

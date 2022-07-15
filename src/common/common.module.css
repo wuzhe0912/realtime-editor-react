@@ -9,6 +9,7 @@
   border-radius: 5px;
   font-size: 16px;
   font-weight: bold;
+  width: 100px;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
 }
@@ -16,13 +17,21 @@
 .btnJoin,
 .btnLeave {
   background: #4aed88;
-  width: 100px;
   margin-left: auto;
 }
 
 .btnJoin:hover,
 .btnLeave:hover {
   background: #2b824c;
+}
+
+.btnCopy {
+  margin-bottom: 10px;
+}
+
+.btnCopy,
+.btnLeave {
+  width: 100%;
 }
 
 /* footer */

@@ -1,7 +1,7 @@
 .editorWrapper {
   display: grid;
   grid-template-columns: 240px 1fr;
-  height: 100vh;
+  height: 100%;
 }
 
 .asideContainer {
@@ -12,18 +12,36 @@
   color: #fff;
 }
 
-.asideInner {
-  flex: 1;
-}
-
 .asideTitle {
   border-bottom: 1px solid #424242;
   padding-bottom: 10px;
+  text-align: center;
+}
+
+.asideOnline {
+  font-size: 20px;
+  color: #4aed88;
 }
 
 .clientsList {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 20px;
+  flex-grow: 1;
+  overflow-y: scroll;
+  height: auto;
+  max-height: 550px;
+}
+
+/* coustom scrollbar */
+.clientsList::-webkit-scrollbar {
+  width: 12px;
+}
+
+.clientsList::-webkit-scrollbar-thumb {
+  background-color: #4aed88;
+  border: 1px solid slategrey;
+  border-radius: 6px;
+}
+
+.btnGroup {
+  margin-top: 10px;
+  text-align: center;
 }

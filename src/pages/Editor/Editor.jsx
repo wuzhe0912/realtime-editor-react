@@ -13,6 +13,8 @@ function Editor() {
     { socketId: 1, username: 'Minecraft' },
     { socketId: 2, username: 'Paint' },
     { socketId: 3, username: 'Carol' },
+    { socketId: 4, username: 'Steam' },
+    { socketId: 5, username: 'Empire Age II' },
   ]);
   const reactNavigator = useNavigate();
 
@@ -23,24 +25,22 @@ function Editor() {
   return (
     <div className={styles.editorWrapper}>
       <aside className={styles.asideContainer}>
-        <div className={styles.asideInner}>
-          <div className={styles.asideTitle}>
-            <img
-              src={CodeSyncLogo}
-              className={commonStyles.logoImage}
-              alt='edit-page-logo'
-            />
-          </div>
-          <h3>Online</h3>
-          {
-            <div className={styles.clientsList}>
-              {clients.map((node) => (
-                <Client key={node.socketId} username={node.username} />
-              ))}
-            </div>
-          }
+        <div className={styles.asideTitle}>
+          <img
+            src={CodeSyncLogo}
+            className={commonStyles.logoImage}
+            alt='edit-page-logo'
+          />
         </div>
-        <div className='btn-group'>
+        <h3 className={styles.asideOnline}>Online</h3>
+        {
+          <div className={styles.clientsList}>
+            {clients.map((node) => (
+              <Client key={node.socketId} username={node.username} />
+            ))}
+          </div>
+        }
+        <div className={styles.btnGroup}>
           <button className={`${commonStyles.btn} ${commonStyles.btnCopy}`}>
             Copy Room ID
           </button>
