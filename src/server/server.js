@@ -21,11 +21,10 @@ function getAllConnectedClients(roomId) {
 
 // websocket api
 socketIo.on('connection', (socket) => {
-  console.log(1, 'server', socket.id);
+  console.log(1, 'socket connected', socket.id);
 
   socket.on(ACTIONS.JOIN, ({ roomId, username }) => {
     userSocketMap[socket.id] = username;
-    console.log(2, userSocketMap[socket.id]);
     socket.join(roomId);
     const clients = getAllConnectedClients(roomId);
     clients.forEach(({ socketId }) => {
@@ -35,6 +34,26 @@ socketIo.on('connection', (socket) => {
         socketId: socket.id,
       });
     });
+  });
+
+  socket.on(ACTIONS.CODE_CHANGE, ({ roomId, code }) => {
+    socket.in(roomId).emit(ACTIONS.CODE_CHANGE, { code });
+  });
+
+  socket.on(ACTIONS.SYNC_CODE, ({ socketId, code }) => {
+    socketIo.to(socketId).emit(ACTIONS.CODE_CHANGE, { code });
+  });
+
+  socket.on('disconnecting', () => {
+    const rooms = [...socket.rooms];
+    rooms.forEach((roomId) => {
+      socket.in(roomId).emit(ACTIONS.DISCONNECTED, {
+        socketId: socket.id,
+        username: userSocketMap[socket.id],
+      });
+    });
+    delete userSocketMap[socket.id];
+    socket.leave();
   });
 });
 
