@@ -15,43 +15,68 @@ import commonStyles from 'common/common.module.css';
 import styles from './Editor.module.css';
 import CodeSyncLogo from 'assets/code-sync.png';
 
-function Editor() {
+const Editor = () => {
   const [clients, setClients] = useState([]);
   const socketRef = useRef(null);
+  const codeRef = useRef(null);
   const location = useLocation();
   const { roomId } = useParams();
   const reactNavigator = useNavigate();
 
   useEffect(() => {
-    const init = async () => {
-      socketRef.current = await initSocket();
-      // check connection status, if disconnected then redirect to home and show error toast
-      socketRef.current.on('connect_error', (error) => {
-        return handleErrors(error);
-      });
-      socketRef.current.on('connect_failed', (error) => {
-        return handleErrors(error);
-      });
-
-      function handleErrors(error) {
-        toast.error('Socket connection failed, try again later.');
-        console.log('socket error', error);
-        reactNavigator('/');
-      }
-
-      console.log(1, location);
-      // connect is successful, join room
-      socketRef.current.emit(ACTIONS.JOIN, {
-        roomId,
-        username: location.state?.userName,
-      });
-
-      // socketRef.current.on(ACTIONS.JOIN, ({ clients }) => {
-      //   console.log('clients', clients);
-      // });
-    };
     init();
+    return () => {
+      socketRef.current.disconnect();
+      socketRef.current.off(ACTIONS.JOINED);
+      socketRef.current.off(ACTIONS.DISCONNECTED);
+    };
   }, []);
+
+  const init = async () => {
+    socketRef.current = await initSocket();
+    // check connection status, if disconnected then redirect to home and show error toast
+    socketRef.current.on('connect_error', (error) => {
+      return handleErrors(error);
+    });
+    socketRef.current.on('connect_failed', (error) => {
+      return handleErrors(error);
+    });
+
+    function handleErrors(error) {
+      toast.error('Socket connection failed, try again later.');
+      console.log('socket error', error);
+      reactNavigator('/');
+    }
+
+    // connect is successful, join room
+    socketRef.current.emit(ACTIONS.JOIN, {
+      roomId,
+      username: location.state?.userName,
+    });
+
+    // listen to join message from server
+    socketRef.current.on(ACTIONS.JOINED, ({ clients, username, socketId }) => {
+      // not current room user
+      if (username !== location.state?.userName) {
+        toast.success(`${username} joined the room.`);
+        console.log(`${username} joined`);
+      }
+      setClients(clients);
+      // send sync code message to server
+      socketRef.current.emit(ACTIONS.SYNC_CODE, {
+        code: codeRef.current,
+        socketId,
+      });
+    });
+
+    // listening user is disconnected or not
+    socketRef.current.on(ACTIONS.DISCONNECTED, ({ socketId, username }) => {
+      toast.success(`${username} left the room.`);
+      setClients((prev) => {
+        return prev.filter((client) => client.socketId !== socketId);
+      });
+    });
+  };
 
   const copyRoomId = async () => {
     try {
@@ -110,6 +135,6 @@ function Editor() {
       </section>
     </div>
   );
-}
+};
 
 export default Editor;

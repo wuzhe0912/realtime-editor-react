@@ -8,7 +8,11 @@ import 'normalize.css';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  // in react 18 use strict mode, development mode will render twice, so temp disable it
+  // <React.StrictMode>
+  //   <App />
+  // </React.StrictMode>,
+  <>
+    <App />,
+  </>,
 );

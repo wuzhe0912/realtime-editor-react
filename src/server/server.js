@@ -7,6 +7,7 @@ const ACTIONS = require('../constant/Actions.js');
 const httpServer = http.createServer(app);
 const socketIo = new Server(httpServer);
 
+// save login user with their socketId
 const userSocketMap = {};
 function getAllConnectedClients(roomId) {
   return Array.from(socketIo.sockets.adapter.rooms.get(roomId) || []).map(
@@ -21,13 +22,13 @@ function getAllConnectedClients(roomId) {
 
 // websocket api
 socketIo.on('connection', (socket) => {
-  console.log(1, 'socket connected', socket.id);
-
   socket.on(ACTIONS.JOIN, ({ roomId, username }) => {
     userSocketMap[socket.id] = username;
     socket.join(roomId);
+    // get current clients
     const clients = getAllConnectedClients(roomId);
     clients.forEach(({ socketId }) => {
+      // return joined message to client
       socketIo.to(socketId).emit(ACTIONS.JOINED, {
         clients,
         username,
