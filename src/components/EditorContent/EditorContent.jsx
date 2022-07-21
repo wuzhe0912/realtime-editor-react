@@ -12,23 +12,36 @@ const EditorContent = () => {
   useEffect(() => {
     if (!editorRef) return;
 
-    const state = EditorState.create({
-      doc: 'console.log("Hello CodeSync!");',
-      extensions: [
-        basicSetup,
-        javascript({ jsx: true }),
-        dracula,
-        keymap.of([indentWithTab]),
-      ],
-    });
+    async function init() {
+      // listening editor code change
+      const updateListenerExtension = EditorView.updateListener.of((update) => {
+        console.log(1, update);
+        if (update.docChanged) {
+          console.log(2);
+        }
+      });
 
-    const view = new EditorView({
-      state,
-      parent: document.querySelector('#editorRef'),
-    });
+      const state = EditorState.create({
+        doc: 'console.log("Hello CodeSync!");',
+        extensions: [
+          basicSetup,
+          javascript({ jsx: true }),
+          dracula,
+          keymap.of([indentWithTab]),
+          updateListenerExtension,
+        ],
+      });
 
-    return () => view.destroy();
-  }, [editorRef]);
+      const view = new EditorView({
+        state,
+        parent: document.querySelector('#editorRef'),
+      });
+
+      return () => view.destroy();
+    }
+
+    init();
+  }, []);
 
   return <div ref={editorRef} id='editorRef'></div>;
 };

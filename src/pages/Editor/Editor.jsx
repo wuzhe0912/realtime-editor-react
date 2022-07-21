@@ -76,6 +76,14 @@ const Editor = () => {
         return prev.filter((client) => client.socketId !== socketId);
       });
     });
+
+    // listening for disconnection
+    socketRef.current.on(ACTIONS.DISCONNECTED, ({ socketId, username }) => {
+      toast.success(`${username} left the room.`);
+      setClients((prev) => {
+        return prev.filter((client) => client.socketId !== socketId);
+      });
+    });
   };
 
   const copyRoomId = async () => {
@@ -131,7 +139,13 @@ const Editor = () => {
         </div>
       </aside>
       <section className='editor-content'>
-        <EditorContent roomId={roomId} socketRef={socketRef} />
+        <EditorContent
+          roomId={roomId}
+          socketRef={socketRef}
+          onCodeChange={(code) => {
+            codeRef.current = code;
+          }}
+        />
       </section>
     </div>
   );
