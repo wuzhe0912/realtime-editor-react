@@ -16,9 +16,9 @@ body {
   height: 100%;
 }
 
-.cm-scroller {
+.CodeMirror {
   min-height: calc(100vh - 10px);
   font-size: 20px;
   line-height: 1.6;
-  padding-top: 10px;
+  padding-top: 20px;
 }

@@ -1,49 +1,63 @@
 import { useEffect, useRef } from 'react';
-import { EditorView, basicSetup } from 'codemirror';
-import { EditorState } from '@codemirror/state';
-import { javascript } from '@codemirror/lang-javascript';
-import { dracula } from '@uiw/codemirror-theme-dracula';
-import { keymap } from '@codemirror/view';
-import { indentWithTab } from '@codemirror/commands';
+import Codemirror from 'codemirror';
+import 'codemirror/lib/codemirror.css';
+import 'codemirror/theme/dracula.css';
+import 'codemirror/mode/javascript/javascript';
+import 'codemirror/addon/edit/closetag';
+import 'codemirror/addon/edit/closebrackets';
+import ACTIONS from 'constant/Actions';
 
-const EditorContent = () => {
+function EditorContent({ socketRef, roomId, onCodeChange }) {
   const editorRef = useRef(null);
-
   useEffect(() => {
-    if (!editorRef) return;
-
     async function init() {
-      // listening editor code change
-      const updateListenerExtension = EditorView.updateListener.of((update) => {
-        console.log(1, update);
-        if (update.docChanged) {
-          console.log(2);
+      editorRef.current = Codemirror.fromTextArea(
+        document.getElementById('editorRef'),
+        {
+          mode: { name: 'javascript', json: true },
+          theme: 'dracula',
+          autoCloseTags: true,
+          autoCloseBrackets: true,
+          lineNumbers: true,
+          tabSize: 2,
+          indentWithTabs: true,
+          rtlMoveVisually: true,
+          coverGutterNextToScrollbar: true,
+          showCursorWhenSelecting: true,
+          lineSeparator: '\n',
+        },
+      );
+
+      editorRef.current.on('change', (instance, changes) => {
+        const { origin } = changes;
+        const code = instance.getValue();
+        onCodeChange(code);
+        if (origin !== 'setValue') {
+          socketRef.current.emit(ACTIONS.CODE_CHANGE, {
+            roomId,
+            code,
+          });
         }
       });
-
-      const state = EditorState.create({
-        doc: 'console.log("Hello CodeSync!");',
-        extensions: [
-          basicSetup,
-          javascript({ jsx: true }),
-          dracula,
-          keymap.of([indentWithTab]),
-          updateListenerExtension,
-        ],
-      });
-
-      const view = new EditorView({
-        state,
-        parent: document.querySelector('#editorRef'),
-      });
-
-      return () => view.destroy();
     }
-
     init();
   }, []);
 
-  return <div ref={editorRef} id='editorRef'></div>;
-};
+  useEffect(() => {
+    if (socketRef.current) {
+      socketRef.current.on(ACTIONS.CODE_CHANGE, ({ code }) => {
+        if (code !== null) {
+          editorRef.current.setValue(code);
+        }
+      });
+    }
+
+    return () => {
+      socketRef.current.off(ACTIONS.CODE_CHANGE);
+    };
+  }, [socketRef.current]);
+
+  return <textarea id='editorRef'></textarea>;
+}
 
 export default EditorContent;
