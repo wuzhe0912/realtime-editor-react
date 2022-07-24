@@ -27,7 +27,7 @@
     "eject": "react-scripts eject",
     "server:dev": "nodemon src/server/server.js",
     "server:prod": "node src/server/server.js",
-    "prod": "npm run build && npm run server:prod"
+    "start": "yarn build && yarn server:prod"
   },
   "engines": {
     "node": "16.15.1",
