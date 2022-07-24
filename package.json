@@ -27,7 +27,11 @@
     "eject": "react-scripts eject",
     "server:dev": "nodemon src/server/server.js",
     "server:prod": "node src/server/server.js",
-    "prod": "yarn build && yarn server:prod"
+    "prod": "npm run build && npm run server:prod"
+  },
+  "engines": {
+    "node": "16.15.1",
+    "npm": "8.11.0"
   },
   "eslintConfig": {
     "extends": [
