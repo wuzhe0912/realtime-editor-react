@@ -1,11 +1,17 @@
 const express = require('express');
 const app = express();
 const http = require('http');
+const path = require('path');
 const { Server } = require('socket.io');
 const ACTIONS = require('../constant/Actions.js');
 
 const httpServer = http.createServer(app);
 const socketIo = new Server(httpServer);
+
+app.use(express.static('build'));
+app.use((req, res, next) => {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
 
 // save login user with their socketId
 const userSocketMap = {};

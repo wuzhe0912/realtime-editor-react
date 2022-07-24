@@ -13,9 +13,11 @@
   - [cm6-themes](https://github.com/craftzdog/cm6-themes)
 - Express
 - Socket.io
-- Deploy : Heroku
+- Deploy(Heroku)
 
-## Sync Code
+## Notes
+
+### Sync Code
 
 - use string record every row of code
 - composition to array emit to server
