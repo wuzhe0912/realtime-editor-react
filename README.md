@@ -2,6 +2,12 @@
 
 ## Live Preview
 
+- [Host](https://pitt-code-editor-app.herokuapp.com/)
+
+### Gif Display
+
+![React Hooks](./src/assets/code-editor.gif)
+
 ## Technical Details
 
 - React
